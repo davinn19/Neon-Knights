@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://ball/ball.gd" type="Script" id=1]
+[ext_resource path="res://materials/white.tres" type="Material" id=2]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, -1.86134e-07, 0, 0, Vector2( 1, 0 ), -3.04599, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 10.0
+scale_curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0730337, 1 ), -3.68586, -3.68586, 0, 0, Vector2( 1, 0 ), -0.236807, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 368.32
+angular_velocity_random = 0.58
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -100.0
+scale = 50.0
+scale_random = 0.5
+scale_curve = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0 ), 0.0, 0.146281, 0, 0, Vector2( 0.163842, 1 ), -3.21818, -3.21818, 0, 0, Vector2( 1, 0 ), -0.185664, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 470.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -100.0
+scale = 20.0
+scale_curve = SubResource( 9 )
+
+[node name="Ball" type="KinematicBody2D" groups=["Ball"]]
+material = ExtResource( 2 )
+position = Vector2( 474, 0 )
+collision_layer = 4
+script = ExtResource( 1 )
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
+
+[node name="Body" type="Polygon2D" parent="."]
+use_parent_material = true
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
+
+[node name="Trail" type="Particles2D" parent="."]
+show_behind_parent = true
+material = ExtResource( 2 )
+use_parent_material = true
+amount = 10
+lifetime = 0.5
+preprocess = 2.0
+visibility_rect = Rect2( -1000, -1000, 2000, 2000 )
+local_coords = false
+process_material = SubResource( 4 )
+
+[node name="Explosion" type="Particles2D" parent="."]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+material = ExtResource( 2 )
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 7 )
+
+[node name="BounceExplosion" type="Particles2D" parent="."]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+material = ExtResource( 2 )
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+local_coords = false
+process_material = SubResource( 10 )

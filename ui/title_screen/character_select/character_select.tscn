@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/input_cover.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/title_screen/character_select/character_select_module.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/font_temes/normal.tres" type="Theme" id=3]
+[ext_resource path="res://ui/font_temes/scoreboard.tres" type="Theme" id=4]
+[ext_resource path="res://ui/title_screen/character_select/character_select.gd" type="Script" id=5]
+[ext_resource path="res://sounds/sfx/select_an_option.wav" type="AudioStream" id=6]
+
+[node name="CharacterSelect" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 500, 0 )
+color = Color( 0.819608, 0.639216, 1, 0.294118 )
+script = ExtResource( 5 )
+
+[node name="InputCover" parent="." instance=ExtResource( 1 )]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+size_flags_horizontal = 3
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 1900.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource( 4 )
+text = "Character Select"
+align = 1
+valign = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+margin_top = 135.0
+margin_right = 1900.0
+margin_bottom = 940.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CharacterSelectModule" parent="VBoxContainer/HSplitContainer" instance=ExtResource( 2 )]
+margin_right = 944.0
+margin_bottom = 805.0
+
+[node name="CharacterSelectModule2" parent="VBoxContainer/HSplitContainer" instance=ExtResource( 2 )]
+margin_left = 956.0
+margin_bottom = 805.0
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+margin_left = 864.0
+margin_top = 960.0
+margin_right = 1035.0
+margin_bottom = 1060.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
+text = "Start!"
+flat = true
+
+[node name="CharacterSelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )

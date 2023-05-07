@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://player/player_class.gd" type="Script" id=1]
+[ext_resource path="res://materials/blue.tres" type="Material" id=2]
+[ext_resource path="res://special_scripts/freeze.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 1 )
+name = "Blue"
+_saber_size = 1
+_move_speed = 450
+max_special_meter = 60
+material = ExtResource( 2 )
+color = Color( 0, 0.415686, 1, 1 )
+special_description = "Freeze (60)
+
+Slows the ball down to 20% speed."
+special_script = ExtResource( 3 )

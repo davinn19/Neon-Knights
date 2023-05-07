@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/font_temes/scoreboard.tres" type="Theme" id=1]
+[ext_resource path="res://ui/font_temes/normal.tres" type="Theme" id=2]
+[ext_resource path="res://ui/title_screen/title_screen_ui.gd" type="Script" id=3]
+[ext_resource path="res://ui/title_screen/controls/controls.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/title_screen/character_select/character_select.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/title_screen/credits.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/title_screen/tutorial.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sounds/sfx/monster_changing_direction.wav" type="AudioStream" id=8]
+
+[node name="TitleScreenUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="MenuSelect" type="ColorRect" parent="."]
+anchor_left = 0.05
+anchor_right = 0.05
+anchor_bottom = 1.0
+margin_right = 500.0
+rect_min_size = Vector2( 500, 0 )
+color = Color( 0.819608, 0.639216, 1, 0.670588 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuSelect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+custom_constants/separation = 50
+
+[node name="Title" type="Label" parent="MenuSelect/VBoxContainer"]
+margin_right = 460.0
+margin_bottom = 233.0
+size_flags_vertical = 0
+theme = ExtResource( 1 )
+text = "Neon
+Knights"
+align = 1
+valign = 1
+
+[node name="Spacer" type="Control" parent="MenuSelect/VBoxContainer"]
+margin_top = 283.0
+margin_right = 460.0
+margin_bottom = 333.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Play" type="Button" parent="MenuSelect/VBoxContainer"]
+margin_top = 383.0
+margin_right = 460.0
+margin_bottom = 447.0
+focus_mode = 0
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Play"
+flat = true
+
+[node name="Tutorial" type="Button" parent="MenuSelect/VBoxContainer"]
+margin_top = 497.0
+margin_right = 460.0
+margin_bottom = 561.0
+focus_mode = 0
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Tutorial"
+flat = true
+
+[node name="Controls" type="Button" parent="MenuSelect/VBoxContainer"]
+margin_top = 611.0
+margin_right = 460.0
+margin_bottom = 675.0
+focus_mode = 0
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Controls"
+flat = true
+
+[node name="Credits" type="Button" parent="MenuSelect/VBoxContainer"]
+margin_top = 725.0
+margin_right = 460.0
+margin_bottom = 789.0
+focus_mode = 0
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Credits"
+flat = true
+
+[node name="Exit" type="Button" parent="MenuSelect/VBoxContainer"]
+margin_top = 839.0
+margin_right = 460.0
+margin_bottom = 903.0
+focus_mode = 0
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Exit Game"
+flat = true
+
+[node name="Submenus" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 700.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+
+[node name="CharacterSelect" parent="Submenus" instance=ExtResource( 5 )]
+rect_min_size = Vector2( 0, 0 )
+color = Color( 0.819608, 0.639216, 1, 0.670588 )
+
+[node name="Tutorial" parent="Submenus" instance=ExtResource( 7 )]
+
+[node name="Controls" parent="Submenus" instance=ExtResource( 4 )]
+color = Color( 0.819608, 0.639216, 1, 0.670588 )
+
+[node name="Credits" parent="Submenus" instance=ExtResource( 6 )]
+color = Color( 0.819608, 0.639216, 1, 0.670588 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ControlRemap" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.866667 )
+
+[node name="Label" type="Label" parent="ControlRemap"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -528.5
+margin_top = -57.5
+margin_right = 528.5
+margin_bottom = 57.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "Press a key to remap"
+align = 1
+valign = 1
+
+[node name="SubmenuSwitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[connection signal="pressed" from="MenuSelect/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="MenuSelect/VBoxContainer/Tutorial" to="." method="_on_Tutorial_pressed"]
+[connection signal="pressed" from="MenuSelect/VBoxContainer/Controls" to="." method="_on_Controls_pressed"]
+[connection signal="pressed" from="MenuSelect/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="MenuSelect/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

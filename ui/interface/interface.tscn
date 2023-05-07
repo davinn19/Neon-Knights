@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/interface/scoreboard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/interface/interface.gd" type="Script" id=2]
+[ext_resource path="res://ui/interface/meter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/font_temes/scoreboard.tres" type="Theme" id=4]
+
+[node name="Interface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Player1" parent="VBoxContainer/TopBar" instance=ExtResource( 3 )]
+margin_left = 302.0
+margin_top = 32.0
+margin_right = 802.0
+margin_bottom = 82.0
+size_flags_vertical = 4
+fill_mode = 1
+
+[node name="Scoreboard" parent="VBoxContainer/TopBar" instance=ExtResource( 1 )]
+margin_left = 806.0
+margin_right = 1114.0
+margin_bottom = 115.0
+size_flags_horizontal = 4
+
+[node name="Player2" parent="VBoxContainer/TopBar" instance=ExtResource( 3 )]
+margin_left = 1118.0
+margin_top = 32.0
+margin_right = 1618.0
+margin_bottom = 82.0
+size_flags_vertical = 4
+
+[node name="Announcement" type="Label" parent="VBoxContainer"]
+margin_top = 119.0
+margin_right = 1920.0
+margin_bottom = 234.0
+theme = ExtResource( 4 )
+text = "Player 1 Scored!"
+align = 1

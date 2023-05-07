@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sparks/sparks.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0187103, 0, 0, Vector2( 1, 0 ), -3.28007, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1000.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -100.0
+damping = 1000.0
+damping_random = 0.37
+scale = 5.0
+scale_random = 0.07
+scale_curve = SubResource( 9 )
+
+[node name="Sparks" type="Particles2D"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+emitting = false
+amount = 30
+explosiveness = 0.81
+process_material = SubResource( 10 )
+script = ExtResource( 1 )

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Materials/white.tres" type="Material" id=1]
+
+[node name="Wall" type="StaticBody2D"]
+modulate = Color( 1, 1, 1, 0.823529 )
+material = ExtResource( 1 )
+rotation = 1.5708
+scale = Vector2( 1, 10000 )
+collision_mask = 0
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+visible = false
+use_parent_material = true
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
+
+[node name="Body" type="Polygon2D" parent="."]
+use_parent_material = true
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )

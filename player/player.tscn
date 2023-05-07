@@ -1,0 +1,265 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://player/player.gd" type="Script" id=1]
+[ext_resource path="res://sounds/sfx/observer_new_upgrade_ready.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/sfx/dramatic_scene_sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://materials/white.tres" type="Material" id=4]
+[ext_resource path="res://sounds/sfx/no_more_power_robot.wav" type="AudioStream" id=5]
+[ext_resource path="res://animations/power_swing.tres" type="Animation" id=6]
+[ext_resource path="res://animations/freeze.tres" type="Animation" id=7]
+[ext_resource path="res://animations/swing.tres" type="Animation" id=8]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Feint"
+length = 1.25
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "slow_time"
+}, {
+"args": [  ],
+"method": "speed_time"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Saber:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 120.0, -240.0, -240.0, 120.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CastingEffect:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Special")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_ball"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Giga Saber"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "slow_time"
+}, {
+"args": [  ],
+"method": "speed_time"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Saber:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 100.0, 0.0, 0.0, 100.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Special")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "grow_saber"
+}, {
+"args": [  ],
+"method": "grow_saber"
+}, {
+"args": [  ],
+"method": "grow_saber"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CastingEffect:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Saber:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 100.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CastingEffect:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SwingArea:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.146067, 1 ), -2.9763, -2.9763, 0, 0, Vector2( 1, 0 ), -1.36871, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 5
+emission_ring_radius = 338.63
+emission_ring_inner_radius = 277.23
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -600.0
+scale = 50.0
+scale_random = 0.5
+scale_curve = SubResource( 5 )
+
+[node name="Player" type="KinematicBody2D"]
+material = ExtResource( 4 )
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="SwingArea" type="Area2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+use_parent_material = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="SwingArea"]
+visible = false
+polygon = PoolVector2Array( -41, 150, 0, 155, 41, 150, 78, 134, 110, 109, 134, 78, 150, 40, 155, 0, 150, -41, 134, -78, 110, -110, 77, -135, 41, -150, 1, -155, -40, -150, 0, 0 )
+
+[node name="Effect" type="Polygon2D" parent="SwingArea"]
+use_parent_material = true
+polygon = PoolVector2Array( -35, 127, -1, 132, 35, 126, 66, 113, 93, 93, 115, 65, 126, 33, 131, 0, 126, -35, 113, -65, 93, -93, 66, -114, 35, -126, 1, -131, -34, -127, -19, -33, -10, -37, 0, -38, 10, -37, 19, -33, 27, -27, 33, -19, 37, -10, 38, 0, 37, 10, 33, 19, 27, 27, 19, 33, 10, 37, 0, 38, -10, 37, -18, 34 )
+
+[node name="Saber" type="Node2D" parent="."]
+use_parent_material = true
+rotation = 1.74533
+
+[node name="Body" type="Polygon2D" parent="Saber"]
+use_parent_material = true
+scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( 21, 0, 24, -3, 60, -3, 63, 0, 60, 3, 24, 3 )
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+visible = false
+use_parent_material = true
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
+
+[node name="Body" type="Polygon2D" parent="."]
+use_parent_material = true
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Feint = SubResource( 6 )
+anims/Freeze = ExtResource( 7 )
+"anims/Giga Saber" = SubResource( 2 )
+"anims/Power Swing" = ExtResource( 6 )
+anims/RESET = SubResource( 1 )
+anims/Swing = ExtResource( 8 )
+
+[node name="Special" type="Node" parent="."]
+
+[node name="SpecialSound" type="AudioStreamPlayer" parent="Special"]
+
+[node name="CastingEffect" type="Particles2D" parent="."]
+use_parent_material = true
+emitting = false
+amount = 50
+speed_scale = 2.0
+explosiveness = 0.1
+local_coords = false
+process_material = SubResource( 3 )
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+
+[node name="CastSpecialSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="MeterFilledSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="FailSpecialSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

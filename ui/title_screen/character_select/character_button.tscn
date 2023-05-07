@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="CharacterButton" type="Button"]
+margin_right = 945.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
